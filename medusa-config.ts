@@ -5,7 +5,7 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 export default defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
-    // Database driver options are required for cloud database SSL handshakes
+    // CRITICAL: This bypasses the "acquireConnection" timeout error in Docker
     databaseDriverOptions: {
       connection: {
         ssl: { rejectUnauthorized: false }
