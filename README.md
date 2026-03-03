@@ -1,3 +1,14 @@
+---
+title: Lilshop Backend
+emoji: 🧶
+colorFrom: brown
+colorTo: orange
+sdk: docker
+pinned: false
+---
+
+
+
 <p align="center">
   <a href="https://www.medusajs.com">
   <picture>
