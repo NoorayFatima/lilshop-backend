@@ -19,5 +19,6 @@ ENV PORT=7860
 EXPOSE 7860
 
 # 7. Start command: Run migrations then start the server
+ENV KNEX_ACQUIRE_CONNECTION_TIMEOUT=60000
 # We bind to 0.0.0.0 so Hugging Face can "see" the app
 CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start --host 0.0.0.0 --port 7860"]
