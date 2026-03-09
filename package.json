@@ -13,7 +13,7 @@
     "medusa"
   ],
   "scripts": {
-    "build:admin": "medusa build --admin-only",
+   "build:admin": "MEDUSA_ADMIN_BACKEND_URL=https://noorayfatima-lilshop.hf.space npx medusa build --admin-only",
     "migrate": "medusa db:migrate",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "start": "medusa start",

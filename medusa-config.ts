@@ -29,5 +29,6 @@ export default defineConfig({
   admin: {
     disable: true,
     path: "/",
+    backendUrl: "https://noorayfatima-lilshop.hf.space",
   }
 })
