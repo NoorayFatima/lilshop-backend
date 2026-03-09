@@ -15,7 +15,11 @@ export default defineConfig({
         idleTimeoutMillis: 30000,
         createTimeoutMillis: 30000,
         acquireTimeoutMillis: 60000
-      }
+      },
+      cookieOptions: {
+      secure: true,      // Required for cross-domain cookies
+      sameSite: "none",  // Allows Vercel to send the cookie to Hugging Face
+    }
     },
     http: {
       storeCors: process.env.STORE_CORS || "*",
