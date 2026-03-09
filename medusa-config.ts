@@ -5,25 +5,29 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 export default defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
-    // CRITICAL: Manage the connection pool for Supabase Free Tier
     databaseDriverOptions: {
       connection: {
         ssl: { rejectUnauthorized: false }
       },
       pool: {
-        min: 1,      // Minimum active connections
-        max: 3,      // Lower this for Free Tier (Supabase Nano limit is 15 total)
+        min: 0, // Changed to 0 to be safer for Supabase Free Tier
+        max: 2, // Kept very low to avoid "Too many connections" errors
         idleTimeoutMillis: 30000,
         createTimeoutMillis: 30000,
-        acquireTimeoutMillis: 60000 // Give it more time to "acquire" the connection
+        acquireTimeoutMillis: 60000
       }
     },
     http: {
-      storeCors: process.env.STORE_CORS!,
-      adminCors: process.env.ADMIN_CORS!,
-      authCors: process.env.AUTH_CORS!,
+      storeCors: process.env.STORE_CORS || "*",
+      adminCors: process.env.ADMIN_CORS || "*",
+      authCors: process.env.AUTH_CORS || "*",
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }
+  },
+  // THIS IS THE CRITICAL SECTION TO FIX THE STARTUP ERROR
+  admin: {
+    disable: true,
+    path: "/",
   }
 })
