@@ -13,6 +13,8 @@
     "medusa"
   ],
   "scripts": {
+    "build": "medusa build",
+  "start:prod": "npx medusa db:migrate && npx medusa start --host 0.0.0.0 --port 7860",
    "build:admin": "MEDUSA_ADMIN_BACKEND_URL=https://noorayfatima-lilshop.hf.space npx medusa build --admin-only",
     "migrate": "medusa db:migrate",
     "seed": "medusa exec ./src/scripts/seed.ts",
