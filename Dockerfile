@@ -22,4 +22,5 @@ EXPOSE 7860
 ENV KNEX_ACQUIRE_CONNECTION_TIMEOUT=60000
 # We bind to 0.0.0.0 so Hugging Face can "see" the app
 #CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start --host 0.0.0.0 --port 7860"]
-CMD ["sh", "-c", "node seed-admin.js && npx medusa start --host 0.0.0.0 --port 7860"]
+#CMD ["sh", "-c", "node seed-admin.js && npx medusa start --host 0.0.0.0 --port 7860"]
+CMD npx medusa db:migrate && npx medusa start --host 0.0.0.0 --port 7860
