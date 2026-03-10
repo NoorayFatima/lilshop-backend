@@ -11,6 +11,10 @@ RUN npm install
 # 4. Copy the rest of your backend code
 COPY . .
 
+# Create the uploads folder and give it full permissions
+RUN mkdir -p uploads
+RUN chmod -R 777 uploads
+
 # 5. Build the Medusa project
 RUN npm run build
 
