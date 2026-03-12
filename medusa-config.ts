@@ -18,13 +18,14 @@ export default defineConfig({
       },
       cookieOptions: {
       secure: true,      // Required for cross-domain cookies
-      sameSite: "none",  // Allows Vercel to send the cookie to Hugging Face
+      sameSite: "none",  // Must be "none" for cross-domain login
+    httpOnly: true, // Allows Vercel to send the cookie to Hugging Face
     }
     },
     http: {
-      storeCors: process.env.STORE_CORS || "*",
-      adminCors: process.env.ADMIN_CORS || "*",
-      authCors: process.env.AUTH_CORS || "*",
+      storeCors: "https://lilshop.vercel.app", // Use your actual frontend URL
+    adminCors: "https://lilshop-admin.vercel.app",    // Use your actual admin URL
+    authCors: "https://lilshop-admin.vercel.app",
       jwtSecret: process.env.JWT_SECRET || "supersecret",
       cookieSecret: process.env.COOKIE_SECRET || "supersecret",
     }
@@ -34,5 +35,15 @@ export default defineConfig({
     disable: true,
     path: "/",
     backendUrl: "https://noorayfatima-lilshop.hf.space",
-  }
+  },
+  plugins: [
+    {
+      resolve: `@medusajs/file-local`,
+      options: {
+        upload_dir: "uploads",
+        // This stops Medusa from using "localhost:9000" in the database
+        backend_url: "https://noorayfatima-lilshop.hf.space",
+      },
+    },
+  ],
 })
