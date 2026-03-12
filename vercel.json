@@ -3,15 +3,8 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/(assets/.*)",
-      "destination": "/$1"
-    },
-    {
-      "source": "/(.*)",
+      "source": "/((?!assets/).*)",
       "destination": "/index.html"
     }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
   ]
 }
