@@ -2,23 +2,12 @@
   "version": 2,
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/index.html"
+      "source": "/assets/(.*)",
+      "destination": "/assets/$1"
     },
     {
-      "source": "/app/(.*)",
+      "source": "/(.*)",
       "destination": "/index.html"
-    },
-    {
-      "source": "/(assets/.*)",
-      "destination": "/$1"
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/app",
-      "permanent": true
     }
   ]
 }
