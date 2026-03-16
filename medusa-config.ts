@@ -6,7 +6,6 @@ export default defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL!,
 
-
     http: {
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
@@ -27,5 +26,14 @@ export default defineConfig({
     backendUrl: "https://noorayfatima-lilshop.hf.space",
   },
 
-  modules: [],
+  modules: [
+    {
+      resolve: "medusa-file-cloudinary",
+      options: {
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET,
+      },
+    },
+  ],
 })
