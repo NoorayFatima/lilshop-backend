@@ -23,7 +23,7 @@ export default defineConfig({
   admin: {
     disable: true,
     path: "/",
-    backendUrl: process.env.MEDUSA_BACKEND_URL!,
+    backendUrl: "https://noorayfatima-lilshop.hf.space",
   },
 
   modules: [],
