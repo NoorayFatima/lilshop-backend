@@ -28,6 +28,7 @@ export default defineConfig({
 
 })*/
 
+/// <reference types="node" />
 import { defineConfig, loadEnv } from "@medusajs/framework/utils"
 
 loadEnv(process.env.NODE_ENV || "development", process.cwd())
@@ -47,13 +48,24 @@ export default defineConfig({
     cookieOptions: {
       sameSite: "none",
       secure: true,
+      httpOnly: true,
     },
   },
 
   admin: {
     disable: true,
     path: "/",
+    backendUrl: "https://noorayfatima-lilshop.hf.space",
   },
 
-  modules: [],
+  // CRITICAL: This overrides any hidden supabase plugins
+  plugins: [
+    {
+      resolve: `@medusajs/file-local`,
+      options: {
+        upload_dir: "uploads",
+        backend_url: "https://noorayfatima-lilshop.hf.space",
+      },
+    },
+  ],
 })
